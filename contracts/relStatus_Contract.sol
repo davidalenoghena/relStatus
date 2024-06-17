@@ -90,6 +90,10 @@ contract relStatus_Contract {
     //check if an address has been connected as a partner already
     function partnerExist(address _partnerAddress) public view returns (bool) {
         for (uint256 id = 0; id < profiles.length; id++) {
+            //if address(0) is the partner address, it does not count as a partner
+            if (profiles[id].partner == address(0)) {
+                return false;
+            }
             if (profiles[id].partner == _partnerAddress) {
                 return true;
             }
